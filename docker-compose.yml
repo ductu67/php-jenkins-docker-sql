@@ -2,45 +2,49 @@ version: "3.7"
 services:
     web:
         build: .
+        restart: always
         ports: 
             - "8001:80"
         container_name: web-php
         volumes:
             - ./www:/var/www/html/
-        links:
+        depends_on:
             - mysql
         networks: 
-            - website
+            - frontend
     mysql:
-        image: mysql
+        image: mysql:5.7
         ports: 
-            - "3306:3306"
+            - 3306:3306
         container_name: mysql
+        restart: always
         environment:
             MYSQL_DATABASE: sqli
             MYSQL_USER: admin
             MYSQL_PASSWORD: A12345678
             MYSQL_ROOT_PASSWORD: A12345678
         volumes:
-            - ./dump:/docker-entrypoint-initdb.d
+            - ./:/docker-entrypoint-initdb.d
             - mysql_data:/var/lib/mysql
         networks:
-            - website
+            - frontend
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         container_name: phpmyadmin
-        links: 
-            - mysql:mysql
+        restart: always
+        depends_on: 
+            - mysql
         ports:
-            - 8000:80
+            - 8888:80
         environment:
             MYSQL_USER: admin
             MYSQL_PASSWORD: A123345678
             MYSQL_ROOT_PASSWORD: A123345678
+            PMA_HOST: mysql
         networks:
-                - website
+            - frontend
 volumes:
     mysql_data:
 networks: 
-    website:
+    frontend:
         external: true
