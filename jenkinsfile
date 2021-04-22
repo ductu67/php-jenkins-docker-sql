@@ -4,48 +4,37 @@ pipeline {
         disableConcurrentBuilds()
     }
     stages {
-        stage('Build-prod') {
-            when {
+        stage('Build-beta') {
+			when {
                 expression {
                     GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
                     return env.GIT_BRANCH == 'origin/master'
                 }
             }
             steps {
+// 				sh 'cp -r -n conf.d.tmp/*.* conf.d'
                 sh 'docker-compose build'
-				sh 'docker-compose push'
             }
         }
 
-        stage('Test') {
-            steps {
-                sh 'echo "test steps will be here"'
-            }
-        }
-
-        stage('Delivery for production') {
-            when {
+        stage('Delivery for beta') {
+			when {
                 expression {
                     GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
                     return env.GIT_BRANCH == 'origin/master'
                 }
             }
             steps {
-                sh 'docker stack deploy -c docker-compose.yml krowoffice'
-                sh 'echo "Waiting for services are ready...."'
-                sh 'sleep 15s'
+                sh 'docker-compose up -d'
             }
         }
+
     }
     post {
-        success {
-            slackSend channel: '#bugs_report',
-            color: 'good',
-            message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
-        }
-        failure {
-            slackSend channel: '#bugs_report',
-            color: 'bad',
-            message: "The pipeline ${currentBuild.fullDisplayName} build has failed."
+        always {
+            dir("${env.WORKSPACE}@tmp") {
+                deleteDir()
+            }
         }
     }
+}
