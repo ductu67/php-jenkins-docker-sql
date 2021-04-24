@@ -13,7 +13,7 @@ pipeline {
             }
             steps {
 // 				sh 'cp -r -n conf.d.tmp/*.* conf.d'
-                sh 'sudo docker-compose build'
+                sh 'docker-compose build --privileged'
             }
         }
 
@@ -25,7 +25,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'sudo docker-compose up -d'
+                sh 'docker-compose up -d --privileged'
             }
         }
 
