@@ -12,8 +12,7 @@ pipeline {
                 }
             }
             steps {
-// 				sh 'cp -r -n conf.d.tmp/*.* conf.d'
-                sh 'docker-compose build --privileged'
+                sh 'sudo docker-compose build'
             }
         }
 
@@ -25,13 +24,13 @@ pipeline {
                 }
             }
             steps {
-                sh 'docker-compose up -d --privileged'
+                sh 'sudo docker-compose up -d'
             }
         }
 
         stage ('DAST') {
             steps {
-                    sh 'docker run -t owasp/zap2docker-stable zap-baseline.py -t http://127.0.0.1:8001" || true'
+                    sh 'sudo docker run -t owasp/zap2docker-stable zap-baseline.py -t http://127.0.0.1:8001" || true'
             }
         }
     }
