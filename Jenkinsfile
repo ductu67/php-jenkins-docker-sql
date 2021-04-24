@@ -13,7 +13,7 @@ pipeline {
             }
             steps {
 // 				sh 'cp -r -n conf.d.tmp/*.* conf.d'
-                sh 'docker-compose build'
+                sh 'docker-compose --build'
             }
         }
 
