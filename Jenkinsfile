@@ -4,7 +4,7 @@ pipeline {
         disableConcurrentBuilds()
     }
     stages {
-        stage('Build-beta') {
+        stage('Build') {
 			when {
                 expression {
                     GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
@@ -16,7 +16,7 @@ pipeline {
             }
         }
 
-        stage('Delivery for beta') {
+        stage('Deploy') {
 			when {
                 expression {
                     GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
@@ -25,12 +25,6 @@ pipeline {
             }
             steps {
                 sh 'sudo docker-compose up -d'
-            }
-        }
-
-        stage ('DAST') {
-            steps {
-                    sh 'sudo docker run -t owasp/zap2docker-stable zap-baseline.py -t "http://127.0.0.1:8001" || true'
             }
         }
     }
