@@ -15,6 +15,12 @@ pipeline {
                 sh 'sudo docker-compose build'
             }
         }
+        
+        stage('Test') { 
+            steps {
+                // 
+            }
+        }
 
         stage('Deploy') {
 			when {
