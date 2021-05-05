@@ -15,10 +15,10 @@ pipeline {
                 sh 'sudo docker-compose build'
             }
         }
-        
+
         stage('Test') { 
             steps {
-                // 
+                sh 'echo test'
             }
         }
 
