@@ -43,16 +43,6 @@ services:
             PMA_HOST: mysql
         networks:
             - frontend
-    # zaproxy:
-    #     image: owasp/zap2docker-stable
-    #     # zap-cli quick-scan --self-contained     --start-options '-config api.disablekey=true' http://127.0.0.1:8001
-    #     # sudo docker run -i owasp/zap2docker-stable zap-cli quick-scan --self-contained     --start-options '-config api.disablekey=true' http://127.0.0.1:8001
-    #     command: zap.sh -daemon -port 8090 -host web
-    #     expose:
-    #     # ZAP is running on 8090, we want it to be accessible by our tools        
-    #         - "8090"
-    #     depends_on:
-    #         - web
 volumes:
     mysql_data:
 networks: 
