@@ -25,13 +25,13 @@
 	            <li><a href="login2.php?attempt=2">Secure</a></li>
 	          </ul>
 	        </li>
-	        <li class="dropdown">
+	        <!-- <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Numeric Login<b class="caret"></b></a>
 	          <ul class="nav dropdown-menu">
 	            <li><a href="login3.php?attempt=2">Vulnerable</a></li>
 	            <li><a href="login4.php?attempt=2">Secure</a></li>
 	          </ul>
-	        </li>
+	        </li> -->
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search<b class="caret"></b></a>
 	          <ul class="nav dropdown-menu">
@@ -39,11 +39,11 @@
 	            <li><a href="books2.php?attempt=2">Secure</a></li>
 	          </ul>
 	        </li>
-	        <li class="dropdown">
+	        <!-- <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools<b class="caret"></b></a>
 	          <ul class="nav dropdown-menu">
 	            <li><a href="regexp.php">Regular Expression Checker</a></li>
-	          </ul>
+	          </ul> -->
         </li>
 	      </ul>
 	      <h3 class="text-muted"><a href="index.php">SQL-Injection Demo</a></h3>
