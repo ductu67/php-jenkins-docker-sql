@@ -88,8 +88,8 @@ Secure Standard Login</span></h3><br>
         }
         else
         {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
+            $username = htmlspecialchars($_POST['username'], ENT_QUOTES, 'UTF-8');
+            $password = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8');
             
             $query = sprintf("SELECT * FROM users WHERE username = '%s' AND password = '%s';",
                              mysqli_real_escape_string($connection, $username),
