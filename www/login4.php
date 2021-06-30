@@ -89,8 +89,8 @@ Secure Numeric Login</span></h3><br>
         }
         else
         {
-            $client = $_POST['client'];
-            $pin = $_POST['pin'];
+            $client = htmlspecialchars($_POST['client'], ENT_QUOTES, 'UTF-8');
+            $pin = htmlspecialchars($_POST['pin'], ENT_QUOTES, 'UTF-8');
           
             if (is_numeric($client) && is_numeric($pin))
             {

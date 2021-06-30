@@ -89,11 +89,11 @@ Secure Search</span></h3><br>
         {
             $query = "SELECT * FROM books;";
         }
-        else if ($_GET['title'] || $_GET['author'])
+        else if (htmlspecialchars($_GET['title'], ENT_QUOTES, 'UTF-8') || htmlspecialchars($_GET['author'], ENT_QUOTES, 'UTF-8'))
         {
             $query = sprintf("SELECT * FROM books WHERE title = '%s' OR author = '%s';",
-                             mysqli_real_escape_string($connection, $_GET['title']),
-                             mysqli_real_escape_string($connection, $_GET['author']));
+                             mysqli_real_escape_string($connection, htmlspecialchars($_GET['title'], ENT_QUOTES, 'UTF-8')),
+                             mysqli_real_escape_string($connection, htmlspecialchars($_GET['author'], ENT_QUOTES, 'UTF-8')));
         }
             
         if ($query != null)
