@@ -1,4 +1,4 @@
-DATN
-Web Demo SQL injection
-Jenkins vs OWASP ZAP
-by TuND - AT130260 - KMA 
+ĐỒ ÁN TỐT NGHIỆP - GRADUATION THESIS
+Website Demo with SQL injection
+Website with PHP integrate Jenkins with OWASP ZAP
+By TuND - AT130260 - KMA
