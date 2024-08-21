@@ -95,7 +95,7 @@ INSERT INTO `users` (`id`, `username`, `password`) VALUES
 (0000000004, 'root', 'root'),
 (0000000005, 'toor', 'toor'),
 (0000000006, 'at13b', 'at13b'),
-(0000000007, 'ductu98bn', 'ductu98bn');
+(0000000007, 'tund', 'A123456789');
 
 --
 -- Chỉ mục cho các bảng đã đổ
